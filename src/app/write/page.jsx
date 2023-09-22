@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./writePage.module.css";
+import style from "./writePage.module.css";
 import { useEffect, useState } from "react";
-import "react-quill/dist/quill.bubble.css";
+
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
@@ -13,10 +13,12 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
 
 const WritePage = () => {
   const { status } = useSession();
+  const ReactQuill = dynamic(()=>import('react-quill'),{ssr:false});
+
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
@@ -62,7 +64,7 @@ const WritePage = () => {
   }, [file]);
 
   if (status === "loading") {
-    return <div className={styles.loading}>Loading...</div>;
+    return <div className={style.loading}>Loading...</div>;
   }
 
   if (status === "unauthenticated") {
@@ -96,14 +98,14 @@ const WritePage = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={style.container}>
       <input
         type="text"
         placeholder="Title"
-        className={styles.input}
+        className={style.Input}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <select className={styles.select} onChange={(e) => setCatSlug(e.target.value)}>
+      <select className={style.select} onChange={(e) => setCatSlug(e.target.value)}>
         <option value="style">style</option>
         <option value="fashion">fashion</option>
         <option value="food">food</option>
@@ -111,40 +113,34 @@ const WritePage = () => {
         <option value="travel">travel</option>
         <option value="coding">coding</option>
       </select>
-      <div className={styles.editor}>
-        <button className={styles.button} onClick={() => setOpen(!open)}>
-          <Image src="/plus.png" alt="" width={16} height={16} />
+      <div className={style.editor} >
+        <button className={style.button} onClick={() => { setOpen(!open) }}>
+          <Image src='/plus.png' alt='' width={16} height={16} className={style.plus} />
         </button>
         {open && (
-          <div className={styles.add}>
-            <input
-              type="file"
-              id="image"
-              onChange={(e) => setFile(e.target.files[0])}
+          <div className={style.add}>
+            <button className={style.addbutton}>
+              <Image src="/text.png" alt='' width={20} height={22} className={style.image} />
+            </button>
+            <input type='file' id='image' onChange={e => setFile(e.target.files[0])}
               style={{ display: "none" }}
             />
-            <button className={styles.addButton}>
-              <label htmlFor="image">
-                <Image src="/image.png" alt="" width={16} height={16} />
+            <button className={style.addbutton}>
+              <label htmlFor='image'>
+                <Image src='/image.png' alt='' width={21} height={21} className={style.image} />
               </label>
             </button>
-            <button className={styles.addButton}>
-              <Image src="/external.png" alt="" width={16} height={16} />
+            <button className={style.addbutton}>
+              <Image src='/video.png' alt='' width={20} height={20} className={style.image} />
             </button>
-            <button className={styles.addButton}>
-              <Image src="/video.png" alt="" width={16} height={16} />
+            <button className={style.addbutton}>
+              <Image src='/codearea.png' alt='' width={23} height={23} className={style.image} />
             </button>
           </div>
         )}
-        <ReactQuill
-          className={styles.textArea}
-          theme="bubble"
-          value={value}
-          onChange={setValue}
-          placeholder="Tell your story..."
-        />
+        <ReactQuill className={style.textArea} theme='bubble' value={value} onChange={setValue} placeholder='Tell Your Story...' />
       </div>
-      <button className={styles.publish} onClick={handleSubmit}>
+      <button className={style.publish} onClick={handleSubmit}>
         Publish
       </button>
     </div>

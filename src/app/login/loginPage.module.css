@@ -1,55 +1,99 @@
-.container {
+.container{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 60px;
 }
-
-.wrapper {
+.socialMediaText{
+  font-size: 35px;
+  font-weight: 600;
+margin-bottom: 10px;
+}
+.wrapper{
   background-color: var(--softBg);
-  padding: 150px 200px;
+  padding: 100px 180px; 
   display: flex;
-  flex-direction: column;
   gap: 50px;
+  flex-direction: column;
   border-radius: 10px;
 }
-
-.socialButton {
-  padding: 20px;
+.socialButton{
+  padding: 15px;
   border-radius: 5px;
   border: none;
   color: white;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 5px;
+}
+.socialButton:first-child{
+  background: linear-gradient(90deg, #f48942, #1c4f79, #4285F4);
+  background-size: 400% 100%;
+}
+.socialButton:first-child:hover  {
+  background-color: #3e77d2; /* Darker blue on hover */
+  transform: scale(1.05); /* Scale the button slightly on hover */
+}
+.gsign{
+  display: inline;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4285F4; /* Google blue */
+  background-color: #fff; /* White background */
+  border-radius: 50px;
+  padding: 5px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.socialButton:first-child {
-  background-color: #ff5555;
+@keyframes gradient {
+  0%, 100% {
+    background-position: 100% 0;
+  }
+  25%, 75% {
+    background-position: 0 0;
+  }
 }
 
 .socialButton:nth-child(2) {
-  background-color: #111;
+  background: linear-gradient(90deg, #0a0b0e, #1d201f, #22211f, #000000);
+  background-size: 400% 100%;
+  animation: gradient 4s ease-in-out infinite;
 }
-
+.socialButton:nth-child(2):hover  {
+  background-color: black; /* Darker blue on hover */
+  transform: scale(1.05); /* Scale the button slightly on hover */
+}
 .socialButton:nth-child(3) {
-  background-color: #087bea;
+  background:  linear-gradient(90deg, #4f66ee, #1c4f79, #4285F4);
+  background-size: 400% 100%;
+  animation: gradient 4s ease-in-out infinite;
+}
+.socialButton:nth-child(3):hover  {
+  background-color: black; /* Darker blue on hover */
+  transform: scale(1.05); /* Scale the button slightly on hover */
 }
 
-@media screen and (max-width: 768px) {
-  .wrapper {
-    padding: 50px 100px;
+@media screen and (max-width:768px) {
+  .wrapper{
+      padding: 50px 100px;
   }
 }
-@media screen and (max-width: 640px) {
-  .wrapper {
-    padding: 30px;
-  }
 
+@media screen and (max-width:640px) {
+  .wrapper{
+      padding: 30px;
+  }
   .socialButton{
-    font-weight: 400;
-    font-size: 14px;
+      font-weight: 400;
+      font-size: 14px;
   }
 }

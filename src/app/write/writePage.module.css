@@ -1,25 +1,14 @@
 .container{
-  position: relative;
   display: flex;
   flex-direction: column;
 }
-
-.select{
-  margin-bottom: 50px;
-  padding: 10px 20px;
-  margin-left: 50px;
-  width: max-content;
-}
-
-.editor {
+.editor{
   display: flex;
   gap: 20px;
-  height: 700px;
-  position: relative;
+  height: 300px;
+  /* position: relative; */
 }
-
-.button,
-.addButton {
+.button,.addbutton{
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -30,46 +19,67 @@
   justify-content: center;
   cursor: pointer;
 }
-
-.addButton {
-  border-color: #1a8917;
+.addbutton{
+  border-color: #63c744;
+  height: 35px;
+  width: 35px;
+}
+.image:hover{
+  background-color: white;
 }
 
-.add {
+.add{
   display: flex;
-  gap: 20px;
-  background-color: var(--bg);
-  position: absolute;
+  flex-direction: column;
+  gap: 10px;
+  background-color: transparent;
+  /* position: absolute; */
   z-index: 999;
-  width: 100%;
-  left: 50px;
+  /* width: 100%; */
+  /* left: 50px; */
 }
-
-.input{
-  padding: 50px;
-  font-size: 64px;
+.image{
+  padding: 1px;
+}
+.Input{
+  padding: 30px;
+  font-size: 50px;
   border: none;
   outline: none;
   background-color: transparent;
   color: var(--textColor);
 }
-
-.input::placeholder{
-  color: #b3b3b1;
+.category{
+  width: max-content;
+  margin: 5px 0px 35px 25px;
+  background-color: rgb(227, 231, 231);
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 15px;
 }
-
-.textArea {
+.textArea{
   width: 100%;
+  background-color: rgb(128, 128, 128);
+  border-radius: 20px;
 }
-
 .publish{
-  position: absolute;
-  top: 0px;
-  right: 0px;
+  margin-left: 55px;
+  margin-top: 40px;
+  font-size: 15px;
   padding: 10px 20px;
   border: none;
-  background-color: #1a8917;
+  background-color: #2e7c2e;
+  border-radius: 10px ;
+  width: max-content;
   color: white;
   cursor: pointer;
-  border-radius: 20px;
+}
+
+
+
+.select{
+  margin-bottom: 50px;
+  padding: 10px 20px;
+  margin-left: 50px;
+  width: max-content;
 }

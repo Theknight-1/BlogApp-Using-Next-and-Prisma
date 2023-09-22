@@ -1,18 +1,41 @@
-.container {
+.container{
   display: flex;
   justify-content: space-between;
 }
 
-.button {
-  width: 100px;
-  border: none;
-  padding: 16px;
-  background-color: crimson;
-  color: white;
-  cursor: pointer;
+.button{
+   display: inline-block;
+   padding: 10px 20px;
+   background: linear-gradient(135deg, #FFC371, #FF5F6D);
+   color: #000;
+   font-size: 16px;
+   border: none;
+   border-radius: 50px;
+   cursor: pointer;
+   transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+   animation: pulse 1s infinite alternate;
 }
 
-.button:disabled{
-  background-color: rgba(220, 20, 60, 0.473);
-  cursor: not-allowed;
+.button:hover{
+   background: linear-gradient(135deg, #FF5F6D, #FFC371);
+   color: #ffffff;
+   transform: scale(1.05) rotate(5deg);
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
+.button:disabled{
+ cursor: not-allowed;
+ background: linear-gradient(135deg, #380105, #5c3602);
+ color: #ffffff;
+ transition: none;
+ animation: none;
+ transform: none;
+}
+@keyframes pulse {
+   0% {
+     transform: scale(1);
+   }
+   100% {
+     transform: scale(1.1);
+   }
+ }
+

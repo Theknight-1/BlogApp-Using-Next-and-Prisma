@@ -1,62 +1,55 @@
-import Menu from "@/components/Menu/Menu";
-import styles from "./singlePage.module.css";
-import Image from "next/image";
-import Comments from "@/components/comments/Comments";
+import React from 'react'
+import style from './singlePage.module.css'
+import Menu from '@/components/menu/Menu'
+import Image from 'next/image'
+import Comments from '@/components/comments/Comments'
 
 const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
-    cache: "no-store",
-  });
+    const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
+        cache: "no-store",
+    });
+    if (!res.ok) {
+        throw new Error('Failed')
+    }
+    return res.json();
+}
 
-  if (!res.ok) {
-    throw new Error("Failed");
-  }
-
-  return res.json();
-};
 
 const SinglePage = async ({ params }) => {
-  const { slug } = params;
-
-  const data = await getData(slug);
-
-  return (
-    <div className={styles.container}>
-      <div className={styles.infoContainer}>
-        <div className={styles.textContainer}>
-          <h1 className={styles.title}>{data?.title}</h1>
-          <div className={styles.user}>
-            {data?.user?.image && (
-              <div className={styles.userImageContainer}>
-                <Image src={data.user.image} alt="" fill className={styles.avatar} />
-              </div>
-            )}
-            <div className={styles.userTextContainer}>
-              <span className={styles.username}>{data?.user.name}</span>
-              <span className={styles.date}>01.01.2024</span>
+    const { slug } = params;
+    const res = await getData(slug)
+    const data = res;
+    return (
+        <div className={style.container}>
+            <div className={style.infoContainer}>
+                <div className={style.textContainer}>
+                    <h1 className={style.title}>
+                        {data?.title}
+                    </h1>
+                    <div className={style.user}>
+                        <div className={style.userImageContainer}>
+                            <Image src={data?.user?.image ? data.user.image : '/userDefImg.png'} alt='' fill className={style.avatar} />
+                        </div>
+                        <div className={style.userTextContainer}>
+                            <span className={style.username}>{data.user.name}</span>
+                            <span className={style.date}>{data?.createdAt.slice(0, 10)}</span>
+                        </div>
+                    </div>
+                </div>
+                <div className={style.imageContainer}>
+                    <Image src={data.img ? data.img : '/defPostImg.png'} alt='' fill className={style.image} />
+                </div>
             </div>
-          </div>
+            <div className={style.content}>
+                <div className={style.post}>
+                    <div className={style.description} dangerouslySetInnerHTML={{ __html: data?.desc }} />
+                    <div className={style.comment}>
+                        <Comments postSlug={slug} />
+                    </div>
+                </div>
+                <Menu />
+            </div>
         </div>
-        {data?.img && (
-          <div className={styles.imageContainer}>
-            <Image src={data.img} alt="" fill className={styles.image} />
-          </div>
-        )}
-      </div>
-      <div className={styles.content}>
-        <div className={styles.post}>
-          <div
-            className={styles.description}
-            dangerouslySetInnerHTML={{ __html: data?.desc }}
-          />
-          <div className={styles.comment}>
-            <Comments postSlug={slug}/>
-          </div>
-        </div>
-        <Menu />
-      </div>
-    </div>
-  );
+    )
 };
-
-export default SinglePage;
+export default SinglePage
