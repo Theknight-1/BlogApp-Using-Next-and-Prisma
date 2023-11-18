@@ -10,7 +10,9 @@ const getData = async() => {
   if (!res.ok) {
     throw new Error('Failed')
   }
-  return res.json();
+  console.log(res);
+  const finaldata = res.json();
+  return  finaldata;
 }
 
 const CategoryList = async () => {
@@ -19,7 +21,7 @@ const CategoryList = async () => {
     <div className={style.container}>
       <h1 className={style.title}>Popular Categories</h1>
       <div className={style.categories}>
-        {data?.map((item) => {
+        { data?.map((item) => {
           return <Link key={item._id} href={`/blog?cat=${item.slug}`} className={`${style.category} ${style[item.slug]}`}>
             {item.img ? <Image src={item.img} alt='' width={32} height={32} className={style.image} /> : <Image src='/defaultimg.jpeg' alt='' width={32} height={32} className={style.image}/>}
             {item.title}

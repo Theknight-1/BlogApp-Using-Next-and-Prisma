@@ -7,7 +7,7 @@ const Card = (props) => {
     <div className={style.container} key={props.key}>
       <div className={style.imageContainer}>
       <Link href={`/posts/${props.item.slug}`}>
-        <Image src={props.item.img===null ? '/defPostImg.png' : props.item.img} alt=''  fill className={style.image} />
+        <Image src={props.item.img===null ? '/coding.png' : props.item.img} alt=''  fill className={style.image} />
       </Link>
       </div>
       <div className={style.textContainer}>

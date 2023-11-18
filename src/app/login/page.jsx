@@ -21,7 +21,7 @@ const Login = () => {
       Login With Different Social Media&apos;s
       </div>
       <div className={style.wrapper}>
-        <div className={style.socialButton} onClick={()=>signIn("google")}>Sign in with Google <div className={style.gsign}>G</div></div>
+        <div className={style.socialButton} onClick={()=>signIn("google",{callbackUrl:"http://localhost:3000"})}>Sign in with Google <div className={style.gsign}>G</div></div>
         <div className={style.socialButton}>Sign in with Github </div>
         <div className={style.socialButton}>Sign in with Facebook <div className={style.gsign}>F</div></div>
       </div>

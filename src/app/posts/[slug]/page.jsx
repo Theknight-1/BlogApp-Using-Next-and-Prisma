@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './singlePage.module.css'
-import Menu from '@/components/menu/Menu'
+import Menu from '@/components/Menu/Menu'
 import Image from 'next/image'
 import Comments from '@/components/comments/Comments'
 
@@ -31,8 +31,8 @@ const SinglePage = async ({ params }) => {
                             <Image src={data?.user?.image ? data.user.image : '/userDefImg.png'} alt='' fill className={style.avatar} />
                         </div>
                         <div className={style.userTextContainer}>
-                            <span className={style.username}>{data.user.name}</span>
-                            <span className={style.date}>{data?.createdAt.slice(0, 10)}</span>
+                            <span className={style.username}>{data.user?.name}</span>
+                            <span className={style.date}>{data?.createdAt?.slice(0, 10)}</span>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@ const SinglePage = async ({ params }) => {
             </div>
             <div className={style.content}>
                 <div className={style.post}>
-                    <div className={style.description} dangerouslySetInnerHTML={{ __html: data?.desc }} />
+                    {/* <div className={style.description} dangerouslySetInnerHTML={{ __html: data.desc===null ? " " : data?.desc }} /> */}
                     <div className={style.comment}>
                         <Comments postSlug={slug} />
                     </div>

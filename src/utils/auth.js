@@ -8,8 +8,8 @@ export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.NEXT_GOOGLE_ID,
+      clientSecret: process.env.NEXT_GOOGLE_SECRET,
     }),
     GithubProvider({
       clientId: process.env.GITHUB_ID,

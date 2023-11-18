@@ -15,6 +15,7 @@ const fetcher = async (url) => {
         const error = new Error(data.message);
         throw error;
     }
+    console.log(data);
     return data;
 };
 
@@ -88,7 +89,7 @@ const Comments = ({ postSlug }) => {
                     data.map((item) => (
                         <div className={style.comment} key={item.id}>
                             <div className={style.user}>
-                                <Image src={item.user.image ? item.user.image : '/userDefImg.png'} alt='' width={50} height={50} className={style.image} />
+                                <Image src={item.user.image ? item.user.image : '/coding.png'} alt='' width={50} height={50} className={style.image} />
                                 <div className={style.userInfo}>
                                     <span className={style.username}>{item.user.name}</span>
                                     <span className={style.date}>{item.createdAt.slice(0, 10)}</span>
